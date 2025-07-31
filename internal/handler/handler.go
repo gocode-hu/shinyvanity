@@ -49,5 +49,8 @@ func VanityHandler(w http.ResponseWriter, r *http.Request) {
 		Path:   modulePath,
 		Repo:   repo,
 	}
-	_ = tmpl.Execute(w, ctx)
+	if err := tmpl.Execute(w, ctx); err != nil {
+		http.Error(w, "template execution error", 500)
+		return
+	}
 }
