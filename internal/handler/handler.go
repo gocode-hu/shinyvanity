@@ -30,7 +30,7 @@ func VanityHandler(w http.ResponseWriter, r *http.Request) {
 	modulePath := strings.Trim(r.URL.Path, "/")
 	domain := os.Getenv("VANITY_DOMAIN")
 	organization := os.Getenv("VANITY_ORGANIZATION")
-	repo := fmt.Sprintf("https://github.com/%s/%s", organization, modulePath)
+	repo := fmt.Sprintf("ssh://git@github.com/%s/%s.git", organization, modulePath)
 
 	// Only respond to go-get=1 requests
 	if r.URL.Query().Get("go-get") != "1" {
